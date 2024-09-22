@@ -16,38 +16,38 @@
   - [Configuración](#configuración)
     - [1. Conexión a MongoDB](#1-conexión-a-mongodb)
     - [2. Iniciar el Servidor](#2-iniciar-el-servidor)
-      - [Modo Desarrollo:](#modo-desarrollo)
-      - [Modo Producción:](#modo-producción)
+      - [Modo Desarrollo](#modo-desarrollo)
+      - [Modo Producción](#modo-producción)
   - [Uso](#uso)
     - [Paso 1: Crear un Nuevo Endpoint](#paso-1-crear-un-nuevo-endpoint)
       - [Estructura de la Solicitud](#estructura-de-la-solicitud)
         - [Método HTTP: POST](#método-http-post)
           - [URL: http://localhost:3000/api/endpoints](#url-httplocalhost3000apiendpoints)
-          - [Encabezados:](#encabezados)
-          - [Cuerpo de la Solicitud (JSON):](#cuerpo-de-la-solicitud-json)
-      - [Ejemplo con curl:](#ejemplo-con-curl)
+          - [Encabezados](#encabezados)
+          - [Cuerpo de la Solicitud (JSON)](#cuerpo-de-la-solicitud-json)
+      - [Ejemplo con curl](#ejemplo-con-curl)
       - [Ejemplo con Postman](#ejemplo-con-postman)
-        - [1. Abre Postman y crea una nueva solicitud.](#1-abre-postman-y-crea-una-nueva-solicitud)
-        - [2. Configura los siguientes parámetros:](#2-configura-los-siguientes-parámetros)
-          - [Método HTTP: POST](#método-http-post-1)
-          - [URL: http://localhost:3000/api/endpoints](#url-httplocalhost3000apiendpoints-1)
-          - [Encabezados:](#encabezados-1)
-          - [Cuerpo de la Solicitud:](#cuerpo-de-la-solicitud)
-        - [3. Haz clic en "Send" y verifica que la respuesta tenga un código de estado 201 Created con los detalles del nuevo endpoint.](#3-haz-clic-en-send-y-verifica-que-la-respuesta-tenga-un-código-de-estado-201-created-con-los-detalles-del-nuevo-endpoint)
+        - [1. Abre Postman y crea una nueva solicitud](#1-abre-postman-y-crea-una-nueva-solicitud)
+        - [2. Configura los siguientes parámetros](#2-configura-los-siguientes-parámetros)
+          - [Crear endpoints, Método HTTP: POST](#crear-endpoints-método-http-post)
+          - [POST URL: http://localhost:3000/api/endpoints](#post-url-httplocalhost3000apiendpoints)
+          - [Encabezados JSON](#encabezados-json)
+          - [Cuerpo de la Solicitud](#cuerpo-de-la-solicitud)
+        - [3. Haz clic en "Send" y verifica que la respuesta tenga un código de estado 201 Created con los detalles del nuevo endpoint](#3-haz-clic-en-send-y-verifica-que-la-respuesta-tenga-un-código-de-estado-201-created-con-los-detalles-del-nuevo-endpoint)
     - [Paso 2: Verificar el Endpoint Creado](#paso-2-verificar-el-endpoint-creado)
       - [Obtener Todos los Endpoints](#obtener-todos-los-endpoints)
         - [Método HTTP: GET](#método-http-get)
-        - [URL: http://localhost:3000/api/endpoints](#url-httplocalhost3000apiendpoints-2)
-        - [Ejemplo con curl:](#ejemplo-con-curl-1)
-        - [Respuesta Exitosa (200 OK):](#respuesta-exitosa-200-ok)
+        - [GET URL: http://localhost:3000/api/endpoints](#get-url-httplocalhost3000apiendpoints)
+        - [Ejemplo con curl GET](#ejemplo-con-curl-get)
+        - [Respuesta Exitosa (200 OK)](#respuesta-exitosa-200-ok)
     - [3. Actualizar un Endpoint](#3-actualizar-un-endpoint)
       - [Ejemplo de Actualización con curl](#ejemplo-de-actualización-con-curl)
-        - [Solicitud:](#solicitud)
-      - [Respuesta Exitosa (200 OK):](#respuesta-exitosa-200-ok-1)
+        - [Solicitud UPDATE](#solicitud-update)
+      - [Respuesta Exitosa UPDATE (200 OK)](#respuesta-exitosa-update-200-ok)
     - [4. Eliminar un Endpoint](#4-eliminar-un-endpoint)
       - [Ejemplo de Eliminación con curl](#ejemplo-de-eliminación-con-curl)
-      - [Solicitud:](#solicitud-1)
-      - [Respuesta Exitosa (200 OK):](#respuesta-exitosa-200-ok-2)
+      - [Solicitud DELETE](#solicitud-delete)
+      - [Respuesta Exitosa del DELETE (200 OK)](#respuesta-exitosa-del-delete-200-ok)
 
 ## Características
 
@@ -84,9 +84,11 @@ cd generador-api
 ```
 
 ### 2. Instalar las Dependencias
+
 ```bash
 npm install
 ```
+
 ### 3. Configurar Variables de Entorno (Opcional)
 
 ```bash
@@ -97,10 +99,12 @@ PORT=3000
 ## Configuración
 
 ### 1. Conexión a MongoDB
+
 Por defecto, la aplicación intenta conectarse a MongoDB en mongodb://localhost:27017/generador-api. Si utilizas una URI diferente, actualiza el archivo de configuración:
 
 ruta: config/db.js
-```
+
+``` javaScript
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
@@ -121,29 +125,39 @@ module.exports = connectDB;
 ```
 
 ### 2. Iniciar el Servidor
-#### Modo Desarrollo:
+
+#### Modo Desarrollo
+
 ``` bash
 npm run dev
 ```
 
-#### Modo Producción:
+#### Modo Producción
+
 ``` bash
 npm start
 ```
 
 ## Uso
 
-La API principal está disponible en http://localhost:3000/api. A continuación, se describen los diferentes pasos para gestionar tus endpoints personalizados.
+La API principal está disponible en <http://localhost:3000/api>. A continuación, se describen los diferentes pasos para gestionar tus endpoints personalizados.
 
 ### Paso 1: Crear un Nuevo Endpoint
+
 Para crear un nuevo endpoint personalizado, debes enviar una solicitud POST a la ruta /api/endpoints con la información necesaria.
 
 #### Estructura de la Solicitud
+
 ##### Método HTTP: POST
-###### URL: http://localhost:3000/api/endpoints
-###### Encabezados:
-```Content-Type: application/json ```
-###### Cuerpo de la Solicitud (JSON):
+
+###### URL: <http://localhost:3000/api/endpoints>
+
+###### Encabezados
+
+```Content-Type: application/json```
+
+###### Cuerpo de la Solicitud (JSON)
+
 ``` json
 {
   "name": "Nombre del Endpoint",
@@ -158,7 +172,8 @@ Para crear un nuevo endpoint personalizado, debes enviar una solicitud POST a la
 }
 ```
 
-#### Ejemplo con curl:
+#### Ejemplo con curl
+
 ``` bash
 curl -X POST http://localhost:3000/api/endpoints \
      -H "Content-Type: application/json" \
@@ -183,16 +198,26 @@ curl -X POST http://localhost:3000/api/endpoints \
            }
          }'
 ```
+
 #### Ejemplo con Postman
-##### 1. Abre Postman y crea una nueva solicitud.
-##### 2. Configura los siguientes parámetros:
-###### Método HTTP: POST
-###### URL: http://localhost:3000/api/endpoints
-###### Encabezados:
+
+##### 1. Abre Postman y crea una nueva solicitud
+
+##### 2. Configura los siguientes parámetros
+
+###### Crear endpoints, Método HTTP: POST
+
+###### POST URL: <http://localhost:3000/api/endpoints>
+
+###### Encabezados JSON
+
 ```Content-Type: application/json```
-###### Cuerpo de la Solicitud:
+
+###### Cuerpo de la Solicitud
+
 Selecciona la opción ```raw``` y luego ```JSON```.
 Ingresa el siguiente JSON:
+
 ``` json
 {
   "name": "Obtener Usuarios",
@@ -216,19 +241,27 @@ Ingresa el siguiente JSON:
 }
 
 ```
-##### 3. Haz clic en "Send" y verifica que la respuesta tenga un código de estado 201 Created con los detalles del nuevo endpoint.
+
+##### 3. Haz clic en "Send" y verifica que la respuesta tenga un código de estado 201 Created con los detalles del nuevo endpoint
 
 ### Paso 2: Verificar el Endpoint Creado
+
 Una vez que hayas creado un endpoint, puedes verificar su existencia y detalles mediante solicitudes GET.
 
 #### Obtener Todos los Endpoints
+
 ##### Método HTTP: GET
-##### URL: http://localhost:3000/api/endpoints
-##### Ejemplo con curl:
-``` bash 
+
+##### GET URL: <http://localhost:3000/api/endpoints>
+
+##### Ejemplo con curl GET
+
+``` bash
 curl http://localhost:3000/api/endpoints
 ```
-##### Respuesta Exitosa (200 OK):
+
+##### Respuesta Exitosa (200 OK)
+
 ``` bash
 [
   {
@@ -257,11 +290,14 @@ curl http://localhost:3000/api/endpoints
   // ... otros endpoints
 ]
 ```
+
 ### 3. Actualizar un Endpoint
+
 Para actualizar la información de un endpoint existente, debes enviar una solicitud PUT a la ruta /api/endpoints/:id con los nuevos datos.
 
 #### Ejemplo de Actualización con curl
-##### Solicitud:
+
+##### Solicitud UPDATE
 
 ``` bash
 curl -X PUT http://localhost:3000/api/endpoints/60d0fe4f5311236168a109ca \
@@ -288,7 +324,7 @@ curl -X PUT http://localhost:3000/api/endpoints/60d0fe4f5311236168a109ca \
          }'
 ```
 
-#### Respuesta Exitosa (200 OK):
+#### Respuesta Exitosa UPDATE (200 OK)
 
 ``` json
 {
@@ -317,16 +353,18 @@ curl -X PUT http://localhost:3000/api/endpoints/60d0fe4f5311236168a109ca \
 ```
 
 ### 4. Eliminar un Endpoint
+
 Para eliminar un endpoint personalizado existente, debes enviar una solicitud DELETE a la ruta /api/endpoints/:id.
 
 #### Ejemplo de Eliminación con curl
-#### Solicitud:
+
+#### Solicitud DELETE
 
 ``` bash
 curl -X DELETE http://localhost:3000/api/endpoints/60d0fe4f5311236168a109ca
 ```
 
-#### Respuesta Exitosa (200 OK):
+#### Respuesta Exitosa del DELETE (200 OK)
 
 ``` json
 {

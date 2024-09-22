@@ -9,6 +9,10 @@
   - [Características](#características)
   - [Tecnologías Utilizadas](#tecnologías-utilizadas)
   - [Requisitos Previos](#requisitos-previos)
+  - [Instalación](#instalación)
+    - [1. Clonar el Repositorio](#1-clonar-el-repositorio)
+  - [Paso 1: Crear un Nuevo Endpoint](#paso-1-crear-un-nuevo-endpoint)
+    - [Estructura de la Solicitud](#estructura-de-la-solicitud)
 
 ## Características
 
@@ -34,3 +38,35 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu máquina:
 - **MongoDB** (localmente o a través de un servicio en la nube como [MongoDB Atlas](https://www.mongodb.com/cloud/atlas))
 - **Git** (opcional, para clonar el repositorio)
 - **Postman** o **Insomnia** (herramientas recomendadas para probar las APIs)
+## Instalación
+
+### 1. Clonar el Repositorio
+
+```bash
+git clone https://github.com/natadev01/generador-api.git
+cd generador-api
+
+## Paso 1: Crear un Nuevo Endpoint
+
+Para crear un nuevo endpoint personalizado, debes enviar una solicitud `POST` a la ruta `/api/endpoints` con la información necesaria.
+
+### Estructura de la Solicitud
+
+- **Método HTTP:** `POST`
+- **URL:** `http://localhost:3000/api/endpoints`
+- **Encabezados:**
+  - `Content-Type: application/json`
+- **Cuerpo de la Solicitud (JSON):**
+
+```json
+{
+  "name": "Nombre del Endpoint",
+  "method": "GET",
+  "path": "/ruta-del-endpoint",
+  "requestSchema": {
+    // Esquema de la solicitud (opcional)
+  },
+  "responseSchema": {
+    // Esquema de la respuesta
+  }
+}
